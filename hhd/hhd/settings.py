@@ -37,9 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+]
+
+INSTALLED_APPS += [
     'rest_framework',
+    'rest_framework.authtoken',
+]
+
+INSTALLED_APPS += [
     'user_app',
-    'msg_app',
+    # 'msg_app',
+    # 'task_app',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +66,7 @@ ROOT_URLCONF = 'hhd.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, os.path.join(BASE_DIR / './templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,13 +162,12 @@ REST_FRAMEWORK = {
 
 
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        'rest_framework.permissions.IsAuthenticated'
     ],
 
 
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
