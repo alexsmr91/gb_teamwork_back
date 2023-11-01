@@ -1,21 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from uuid import uuid4
+
+from django.contrib.auth.models import User
 
 
-class CustomUser(AbstractUser):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    room_number = models.CharField(max_length=64)
-    phone = models.IntegerField(unique=True)
-    role = models.IntegerField(default=1)         # подумать над ролями, создать таблицу с ролями или юзать группы джанго
+class Profile(models.Model):
+    phone = models.IntegerField(verbose_name="Номер телефона", null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Гость", null=False, blank=False)
 
-
-    USERNAME_FIELD = "phone"  # использовать телефон вместо юзернейм для логина
-    REQUIRED_FIELDS = ["username"]  # чтобы работала команда createsuperuser
-
-    # str == fix for DRF template
     def __str__(self):
-        if self.username:
-            return f'{self.username} (+{self.phone})'
-        else:
-            return f'+{self.phone}'
+        return f"{self.pk} - "
+
+    class Meta:
+        unique_together = ('user_id', 'phone')
+        verbose_name = 'Профиль'
+        verbose_name_plural = 'Профили'
