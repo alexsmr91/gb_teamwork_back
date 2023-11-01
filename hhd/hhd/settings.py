@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,15 +40,20 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [
-    'rest_framework',
-    'rest_framework.authtoken',
-]
-
-INSTALLED_APPS += [
     'user_app',
     # 'msg_app',
     # 'task_app',
 ]
+
+INSTALLED_APPS += [
+    'rest_framework',
+    'rest_framework.authtoken',
+]
+
+
+OTP_LEN = 4
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -174,3 +178,7 @@ REST_FRAMEWORK = {
 
 
 }
+
+AUTHENTICATION_BACKENDS = [
+    "user_app.backends.CustomBackend",  # "django.contrib.auth.backends.ModelBackend",
+ ]
