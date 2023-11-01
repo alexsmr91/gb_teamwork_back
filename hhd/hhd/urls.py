@@ -25,7 +25,7 @@ router = DefaultRouter()
 router.register('users', UserListAPIViewSet)
 
 urlpatterns = [
-    re_path(r'^api/v(?P<version>\d\.\d)/', include(router.urls)),
+    re_path(r'^api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', views.obtain_auth_token),
