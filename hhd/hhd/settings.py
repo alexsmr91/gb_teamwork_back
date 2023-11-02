@@ -26,23 +26,24 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
 ]
 
 INSTALLED_APPS += [
     'rest_framework',
     'rest_framework.authtoken',
+    'channels',
 ]
 
 INSTALLED_APPS += [
     'user_app',
-    # 'msg_app',
+    'msg_app',
     # 'task_app',
 ]
 
@@ -75,6 +76,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hhd.wsgi.application'
+
+ASGI_APPLICATION = 'hhd.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 
 # Database
@@ -123,7 +132,7 @@ USE_TZ = True
 
 STATIC_URL = 'django-static/'
 
-STATIC_ROOT = BASE_DIR / 'django-static/'
+STATIC_ROOT = BASE_DIR / 'django-static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
