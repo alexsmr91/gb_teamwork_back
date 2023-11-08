@@ -9,6 +9,7 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 if not DEBUG:
     pass

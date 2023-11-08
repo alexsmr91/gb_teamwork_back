@@ -20,18 +20,20 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
-from user_app.views import UserListAPIViewSet
+from user_app.views import *
 from rest_framework.authtoken import views
 
 
 router = DefaultRouter()
-router.register('users', UserListAPIViewSet)
+# router.register('users', UserListAPIViewSet)
 
 urlpatterns = [
     re_path(r'^api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', views.obtain_auth_token),
+    path('api-token-auth-guest/', get_auth_token_with_code_view),
+    path('send-sms/<int:phone>/', send_sms_view),
 ]
 
 if settings.DEBUG:
