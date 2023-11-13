@@ -21,11 +21,12 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
 from user_app.views import *
+from msg_app.views import *
 from rest_framework.authtoken import views
 
 
 router = DefaultRouter()
-# router.register('profile/', profile_api_view)
+router.register(r'messages', MessageViewSet, basename='Message')
 
 urlpatterns = [
     re_path(r'^api/', include(router.urls)),
