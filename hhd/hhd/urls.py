@@ -23,7 +23,6 @@ from rest_framework.routers import DefaultRouter
 from user_app.views import *
 from msg_app.views import *
 from rest_framework.authtoken import views
-from msg_app.views import MessageAPIView
 
 
 router = DefaultRouter()
@@ -37,7 +36,6 @@ urlpatterns = [
     path('api-token-auth-guest/', get_auth_token_with_code_view),
     path('send-sms/<int:phone>/', send_sms_view),
     path('profile/', profile_api_view),
-    path('messages/', MessageAPIView.as_view()),
 ]
 
 if settings.DEBUG:

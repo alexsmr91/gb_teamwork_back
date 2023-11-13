@@ -4,8 +4,8 @@ from .models import Message
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    from_user = serializers.StringRelatedField(source='from_user.username')
-    to_user = serializers.StringRelatedField(source='to_user.username')
+    from_user = serializers.CharField(source='from_user.username')
+    to_user = serializers.CharField(source='to_user.username')
 
     class Meta:
         model = Message
