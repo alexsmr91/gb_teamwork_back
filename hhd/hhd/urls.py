@@ -25,7 +25,7 @@ from rest_framework.authtoken import views
 
 
 router = DefaultRouter()
-# router.register('users', UserListAPIViewSet)
+# router.register('profile/', profile_api_view)
 
 urlpatterns = [
     re_path(r'^api/', include(router.urls)),
@@ -34,6 +34,7 @@ urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
     path('api-token-auth-guest/', get_auth_token_with_code_view),
     path('send-sms/<int:phone>/', send_sms_view),
+    path('profile/', profile_api_view),
 ]
 
 if settings.DEBUG:
