@@ -5,14 +5,14 @@ import httpx
 
 from rest_framework.authtoken.models import Token
 
-from hhd.user_settings import BOT_TOKEN
+from hhd.user_settings import BOT_TOKEN, CHAT_ID
 from user_app import models
 
 
 async def send_sms(phone, code):
     text = f"Номер телефона: {phone}\nКод: {code}"
     async with httpx.AsyncClient() as client:
-        response = await client.get(f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id=652882374&text={urllib.parse.quote(text)}')
+        response = await client.get(f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={CHAT_ID}&text={urllib.parse.quote(text)}')
 
 
 def get_code(phone):
