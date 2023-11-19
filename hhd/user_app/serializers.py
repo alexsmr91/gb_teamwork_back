@@ -17,3 +17,13 @@ class ProfileSerializer(serializers.ModelSerializer):
             'is_guest',
             'is_superuser',
         ]
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'id',
+            'username',
+            'first_name',
+        ]

@@ -27,6 +27,8 @@ from rest_framework.authtoken import views
 
 router = DefaultRouter()
 router.register(r'messages', MessageViewSet, basename='Message')
+router.register(r'send-message', MessageCreateViewSet, basename='SendMessage')
+router.register(r'guest-chat', ChatListViewSet, basename='GuestChat')
 
 urlpatterns = [
     re_path(r'^api/', include(router.urls)),

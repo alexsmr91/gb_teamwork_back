@@ -30,7 +30,7 @@ def get_code(phone):
     user_profile = user.profile
     sending_time = user_profile.sending_time
     sending_time_delta = (datetime.now() - sending_time.replace(tzinfo=None)).seconds if sending_time is not None else 70
-    if user is not None and user_profile.is_guest and user.username.isdigit and 60 < sending_time_delta:
+    if user is not None and user_profile.is_guest and user.username.isdigit and (user_profile.phone_code is None or 60 < sending_time_delta):
         user_profile.sending_time = datetime.now()
         user_profile.phone_code = secrets.SystemRandom().randrange(1000, 9999)
         user_profile.auth_attempts = 0

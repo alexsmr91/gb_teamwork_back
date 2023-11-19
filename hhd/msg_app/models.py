@@ -15,7 +15,7 @@ class Message(models.Model):
     to_user = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
-        null=False,
+        null=True,
         blank=False,
         verbose_name='Пользователю',
         related_name='to_user'

@@ -38,12 +38,9 @@ class GuestChatConsumer(AsyncJsonWebsocketConsumer):
             })
 
     async def chat_message(self, event):
-        if 'message' in event:
-            await self.send_json(content={
-                'type': 'new_message',
-                'message': event['message'],
-                'from': self.user.username
-            })
+        await self.send_json(content={
+            'type': 'chat_message'
+        })
 
 
 class StuffChatConsumer(AsyncJsonWebsocketConsumer):
@@ -82,11 +79,10 @@ class StuffChatConsumer(AsyncJsonWebsocketConsumer):
             })
 
     async def chat_message(self, event):
-        if 'message' in event:
+        if 'user' in event:
             await self.send_json(content={
-                'type': 'new_message',
-                'message': event['message'],
-                'from': self.user.username
+                'type': 'chat_message',
+                'user': event['user']
             })
 
 
